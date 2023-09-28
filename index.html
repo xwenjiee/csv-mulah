@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Table Output and Processing</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="" />
+    <style>
+      table,
+      th,
+      td {
+        border: 1px solid black;
+        border-collapse: collapse;
+      }
+    </style>
+  </head>
+  <body>
+    <!--[if lt IE 7]>
+      <p class="browsehappy">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="#">upgrade your browser</a> to improve your experience.
+      </p>
+    <![endif]-->
+    <h1>HELLO</h1>
+    <div>
+      <div>
+        <input type="file" name="file" id="file" accept=".csv" /> <br /><br />
+        <input
+          type="button"
+          id="btnsubmit"
+          value="Submit"
+          onclick="readCSVFile();"
+        />
+      </div>
+
+      <br /><br />
+      <!-- List CSV file data -->
+      <h1>Table 1</h1>
+      <table id="tblcsvdata" border="1" style="border-collapse: collapse">
+        <thead>
+            <tr>
+            <th>Index #</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <br />
+      <h1>Table 2</h1>
+      <table
+        id="tblcsvdataProcessed"
+        border="1"
+        style="border-collapse: collapse"
+      >
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr id="alpha">
+                <td>
+                    Alpha
+                </td>
+            </tr>
+            <tr id="beta">
+                <td>
+                    Beta
+                </td>
+            </tr>
+            <tr id="charlie">
+                <td>
+                    Charlie
+                </td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+    <script>
+      function readCSVFile() {
+        var files = document.querySelector("#file").files;
+
+        if (files.length > 0) {
+        
+            var A5 
+            var A20
+            var A15
+            var A7
+            var A13
+            var A12 
+
+        const listOfVarName = ["A5","A20","A15","A7","A13","A12"]
+
+          // Selected file
+          var file = files[0];
+
+          // FileReader Object
+          var reader = new FileReader();
+
+          // Read file as string
+          reader.readAsText(file);
+
+          // Load event
+          reader.onload = function (event) {
+            // Read file data
+            var csvdata = event.target.result;
+
+            // Split by line break to gets rows Array
+            var rowData = csvdata.split("\n");
+            console.log(rowData);
+
+            // <table > <tbody>
+            var tbodyEl = document
+              .getElementById("tblcsvdata")
+              .getElementsByTagName("tbody")[0];
+            tbodyEl.innerHTML = "";
+
+            // Loop on the row Array (change row=0 if you also want to read 1st row)
+            for (var row = 1; row < rowData.length; row++) {
+              // Insert a row at the end of table
+              var newRow = tbodyEl.insertRow();
+
+              // Split by comma (,) to get column Array
+              rowColData = rowData[row].split(",");
+
+              // Loop on the row column Array
+              for (var col = 0; col < rowColData.length; col++) {
+                // Insert a cell at the end of the row
+                var newCell = newRow.insertCell();
+                newCell.innerHTML = rowColData[col];
+
+                //only check Index # column
+                if (col==0){
+
+                    // only check if index # is in the list of index #
+                    if(listOfVarName.includes(rowColData[col])){
+                        if(rowColData[col]==listOfVarName[0]){
+                            A5 = parseInt(rowColData[1])
+                            console.log(A5)
+                        }
+                        else if(rowColData[col]==listOfVarName[1]){
+                            A20 = parseInt(rowColData[1])
+                            console.log(A20)
+
+                        }
+                        else if(rowColData[col]==listOfVarName[2]){
+                            A15 = parseInt(rowColData[1])
+                            console.log(A5)
+                            
+                        }
+                        else if(rowColData[col]==listOfVarName[3]){
+                            A7 = parseInt(rowColData[1])
+                            console.log(A7)
+                        }
+                        else if(rowColData[col]==listOfVarName[4]){
+                            A13 = parseInt(rowColData[1])
+                            console.log(A13)
+                       
+                    }
+                    else if(rowColData[col]==listOfVarName[5]){
+                        A12 = parseInt(rowColData[1])
+                        console.log(A12)
+                       
+                    }
+                    
+}
+
+                }
+                }  
+              }
+            
+            var alpha = A5+A20
+            var beta = A15/A7
+            var charlie = A13*A12
+            
+            console.log(alpha,beta,charlie)
+            document.getElementById("alpha").insertCell().innerHTML=alpha
+            document.getElementById("beta").insertCell().innerHTML=beta
+            document.getElementById("charlie").insertCell().innerHTML=charlie
+
+          };
+        } else {
+          alert("Please select a file.");
+        }
+      }
+    </script>
+  </body>
+</html>
