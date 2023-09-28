@@ -20,13 +20,14 @@
       }
     </style>
   </head>
-  <body>
+  <body >
     <!--[if lt IE 7]>
       <p class="browsehappy">
         You are using an <strong>outdated</strong> browser. Please
         <a href="#">upgrade your browser</a> to improve your experience.
       </p>
     <![endif]-->
+    <div style="text-align:center">
     <h1>HELLO</h1>
     <div>
       <div>
@@ -42,7 +43,7 @@
       <br /><br />
       <!-- List CSV file data -->
       <h1>Table 1</h1>
-      <table id="tblcsvdata" border="1" style="border-collapse: collapse">
+      <table id="tblcsvdata" border="1" style="margin-left:auto;margin-right:auto;border-collapse: collapse">
         <thead>
             <tr>
             <th>Index #</th>
@@ -56,7 +57,7 @@
       <table
         id="tblcsvdataProcessed"
         border="1"
-        style="border-collapse: collapse"
+        style="border-collapse: collapse; margin-left:auto;margin-right:auto;"
       >
         <thead>
           <tr>
@@ -82,6 +83,7 @@
             </tr>
         </tbody>
       </table>
+    </div>
     </div>
     <script>
       function readCSVFile() {
